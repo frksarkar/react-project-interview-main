@@ -125,7 +125,6 @@ const Checkout = () => {
                 // toast.success('Course Purchase Successful');
                 setOrderCheckoutData(response.data.coursePurchaseData);
             }
-			console.log(response);
 		});
 	};
 

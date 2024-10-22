@@ -161,7 +161,7 @@ const OrderDetails = () => {
 								</tr>
 							</thead>
 							<tbody className="md:text-base text-sm font-semibold">
-								{course.length &&
+								{course &&
 									course.map((course, index) => (
 										<tr>
 											<td className="border text-center w-10 h-12 px-2">
