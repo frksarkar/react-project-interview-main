@@ -55,7 +55,7 @@ const Cart = () => {
                                 setCartItem(cart);
                                 removeFromCart(null);
                             }}
-							link="/checkout"
+							link={cart ? "/checkout" : "/course"}
 						/>
 					</div>
 				</div>

@@ -15,7 +15,7 @@ const MenuBar = () => {
 	const [selected, setSelected] = useState('');
 	const location = useLocation();
 	const [hasAccess] = useHasAccess();
-	const { setOpen, cart } = useContext(OrderContext);
+	const { setOpen, cart, purchaseCourseData, cartItem } = useContext(OrderContext);
 	const [isSmallScreen] = useSmallScreen();
 
 	useEffect(() => {
@@ -71,10 +71,10 @@ const MenuBar = () => {
 										? 'bg-bg_selected rounded-rounded_primary text-white hover:text-white font-medium hover:bg-bg_selected'
 										: 'text-[#585c66] font-medium hover:text-[#585c66] hover:bg-slate-100 '
 								}`}
-								onClick={() => handleClick('/cart')}
+								onClick={() =>  handleClick('/cart')}
 							>
 								<Link
-									to={'/cart'}
+									to= '/cart' 
 									className="flex items-center gap-gap_6px py-pt_primary"
 								>
 									<span className="bg-bg_selected text-white p-pl_primary rounded-rounded_primary text-text_md">
@@ -96,10 +96,10 @@ const MenuBar = () => {
 										? 'bg-bg_selected rounded-rounded_primary text-white hover:text-white font-medium hover:bg-bg_selected'
 										: 'text-[#585c66] font-medium hover:text-[#585c66] hover:bg-slate-100 '
 								}`}
-								onClick={() => handleClick('/checkout')}
+								onClick={() => (!cart && cartItem) && handleClick('/checkout')}
 							>
 								<Link
-									to="/checkout"
+									to={(!cart && cartItem) ?"/checkout": "#"}
 									className="flex items-center gap-gap_6px py-pt_primary"
 								>
 									<span className="bg-bg_selected text-white p-pl_primary rounded-rounded_primary text-text_md">
@@ -120,7 +120,7 @@ const MenuBar = () => {
 								onClick={() => handleClick('/order-details')}
 							>
 								<Link
-									to="/order-details"
+									to={purchaseCourseData ? "/order-details" : "#"}
 									className="flex items-center  gap-gap_6px py-pt_primary"
 								>
 									<span className="bg-bg_selected text-white p-pl_primary rounded-rounded_primary text-text_md">

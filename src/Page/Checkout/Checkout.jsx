@@ -76,7 +76,9 @@ const Checkout = () => {
 		});
 
 		if (Object.keys(errors).length > 0) {
-			toast.error(errors[Object.keys(errors)[0]]);
+			toast.error(errors[Object.keys(errors)[0]], {
+                className: 'top-14'
+            });
 			return;
 		}
 

@@ -32,6 +32,7 @@ const OrderDetails = () => {
 
 			return response.data.singleCoursePurchaseData;
 		} catch (error) {
+            
 			console.error('Error fetching courses:', error);
 		}
 	};

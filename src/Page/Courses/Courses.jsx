@@ -7,7 +7,7 @@ const Courses = () => {
 	const [courses, setCourses] = useState([]); // State to store courses
 	// State variables for pagination
 	const [currentPage, setCurrentPage] = useState(1); // State for pagination
-	const itemsPerPage = 2; // Number of items per page
+	const itemsPerPage = 3; // Number of items per page
 
     // Calculate the total number of pages
 	const totalPages = Math.ceil(courses.length / itemsPerPage);
