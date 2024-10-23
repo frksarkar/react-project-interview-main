@@ -46,18 +46,20 @@ const Cart = () => {
 						</table>
 					</div>
 
-					<div className="lg:w-[41%] bg-white border-2">
-						<CartSummary
-							calculateTotalPrice={() =>
-								calculateTotalPrice(cart)
-							}
-							handleSubmit={() => {
-                                setCartItem(cart);
-                                removeFromCart(null);
-                            }}
-							link={cart ? "/checkout" : "/course"}
-						/>
+                    {cart && (
+                        <div className="lg:w-[41%] bg-white border-2">
+                            <CartSummary
+                                calculateTotalPrice={() =>
+                                    calculateTotalPrice(cart)
+                                }
+                                handleSubmit={() => {
+                                    setCartItem(cart);
+                                    removeFromCart(null);
+                                }}
+                                link={cart ? "/checkout" : "#"}
+                            />
 					</div>
+                    )}
 				</div>
 			</div>
 		</div>
