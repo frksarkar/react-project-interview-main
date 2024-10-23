@@ -56,10 +56,10 @@ const Search = () => {
 						/>
 					</div>
 					<button
-						className="button_primary w-[100px] mx-auto my-5"
+						className="button_primary w-[180px] mx-auto my-5"
 						onClick={handleSearch}
 					>
-						<IoMdSearch className="text-2xl" />
+						<IoMdSearch className="text-2xl inline" /> Search
 					</button>
 				</>
 			) : (
