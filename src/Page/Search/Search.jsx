@@ -56,10 +56,11 @@ const Search = () => {
 						/>
 					</div>
 					<button
-						className="button_primary w-[180px] mx-auto my-5"
+						className="button_primary w-[180px] mx-auto my-5 flex items-center justify-center gap-2"
 						onClick={handleSearch}
 					>
-						<IoMdSearch className="text-2xl inline" /> Search
+						<IoMdSearch className="text-2xl inline" /> 
+                        <span>Search</span>
 					</button>
 				</>
 			) : (

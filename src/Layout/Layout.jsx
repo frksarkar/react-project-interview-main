@@ -8,7 +8,6 @@ import Copyright from '../Shared/Footer/Copyright';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 const Layout = () => {
 	const { open, sidebarRef } = useContext(OrderContext);
 	const [isSmallScreen] = useSmallScreen();
@@ -38,7 +37,7 @@ const Layout = () => {
 						</div>
 					</div>
 					<ToastContainer
-						position="bottom-right"
+						position="top-right"
 						autoClose={1000}
 						hideProgressBar={false}
 						newestOnTop={false}
