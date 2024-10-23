@@ -6,7 +6,7 @@ const CourseCard = ({ course, addToCart, calculateDiscount }) => {
 	const { cart, removeFromCart, updateCartQuantity } = useContext(OrderContext);
 
 	return (
-		<div className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 duration-300 ease-in-out">
+		<div className=" bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 duration-300 ease-in-out">
 			<div className="relative">
 				{/* Course Image */}
 				<img
@@ -76,7 +76,9 @@ const CourseCard = ({ course, addToCart, calculateDiscount }) => {
 						<button
 							className={`py-2 px-4 rounded w-full font-bold text-md transition-colors duration-300 bg-blue-500 hover:bg-blue-600 text-white`}
 							onClick={() => {
-								toast.success('Course added to cart');
+								toast.success('Course added to cart', {
+                                    className: 'top-14',
+                                });
 								addToCart(course, 1); // Adds course with quantity 1
 							}}
 						>
@@ -91,7 +93,7 @@ const CourseCard = ({ course, addToCart, calculateDiscount }) => {
 						<div className="flex items-center justify-between">
 							{/* Decrement Button */}
 							<button
-								className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-full text-lg font-medium"
+								className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-600  text-lg font-medium"
 								onClick={() => {
 									if (cart.quantity > 1) {
 										updateCartQuantity(
@@ -114,12 +116,12 @@ const CourseCard = ({ course, addToCart, calculateDiscount }) => {
 								// 		Math.max(1, Number(e.target.value))
 								// 	)
 								// }
-								className="w-12 text-center bg-gray-100 border border-gray-200 rounded-full text-gray-700"
+								className="w-12 py-1 text-center bg-gray-100 border border-gray-200  text-gray-700"
 							/>
 
 							{/* Increment Button */}
 							<button
-								className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-full text-lg font-medium"
+								className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-600  text-lg font-medium"
 								onClick={() =>
 									updateCartQuantity(
 										course.id,
@@ -132,7 +134,7 @@ const CourseCard = ({ course, addToCart, calculateDiscount }) => {
 
 							{/* Remove Button */}
 							<button
-								className="ml-4 px-4 py-1 bg-red-100 hover:bg-red-200 text-red-600 rounded-full font-medium"
+								className="ml-4 px-4 py-1.5 bg-red-100 hover:bg-red-200 text-red-600 rounded-ls font-medium"
 								onClick={() => removeFromCart()}
 							>
 								Remove
