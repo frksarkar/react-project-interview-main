@@ -5,25 +5,19 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const OrderDetails = () => {
-	const [course, setCourse] = useState([]);
-	const { purchaseCourseData } = useContext(OrderContext);
+	const [course, setCourse] = useState(null);
+	const { purchaseCourseData, userData } = useContext(OrderContext);
 
 	useEffect(() => {
-		if (course.length === 0) {
-			purchaseCourseData.forEach(async (data) => {
+		if (!course && purchaseCourseData) {
+			(async (data) => {
 				const response = await fetchCourse(data);
-				setCourse((prevState) => {
-					return [...prevState, response];
-				});
-			});
+				setCourse(response);
+			})(purchaseCourseData);
 		}
 	}, []);
 
-	function generateOrderId() {
-		const timestamp = Date.now().toString(36); // Converts current timestamp to base 36 (alphanumeric)
-		const randomString = Math.random().toString(36).substring(2, 10); // Random alphanumeric string
-		return `ORD-${timestamp}-${randomString}`; // Customize prefix if needed
-	}
+    console.log(purchaseCourseData);
 
 	const fetchCourse = async (purchaseData) => {
 		try {
@@ -51,85 +45,75 @@ const OrderDetails = () => {
 						<p className="p-3 rounded-md lg:my-2 my-1 w-fit border bg-[#D2C5A2] font-bold text-lg">
 							Order Id :
 							<span className="font-semibold">
-								{generateOrderId()}
+								{purchaseCourseData?.id}
 							</span>
 						</p>
 					</div>
 					<div className="w-full border flex flex-col md:flex-row md:items-start   md:mt-4 mt-3 bg-[#D2C5A2] rounded-md p-4  ">
 						<div className="md:text-base text-sm flex-1  font-semibold   md:border-r-2 md:border-black md:pr-10">
 							<p className="font-bold md:mb-4 w-full">
-								Demo information,Checkout page information will
-								be here{' '}
+                                Billing Information
 							</p>
 							<div className="space-y-1 w-full">
 								<div className="flex items-center justify-between">
 									<p>Full Name :</p>
-									<p className="text-start">
-										{course[0]?.name}
-									</p>
+									<p className="text-start">{userData?.name}</p>
 								</div>
 								<div className="flex items-center justify-between">
 									<p>Country :</p>
-									<p>{course[0]?.country}</p>
+									<p>{userData?.country}</p>
 								</div>
 								<div className="flex items-center justify-between">
 									<p>District Thana :</p>
 									<p className="text-start">
-										{course[0]?.district}
+										{userData?.district_thana}
 									</p>
 								</div>
 								<div className="flex items-center justify-between">
 									<p>Address :</p>
-									<p>{course[0]?.permanent_address}</p>
+									<p>{userData?.permanent_address}</p>
 								</div>
 								<div className="flex items-center justify-between">
 									<p>Order Notes :</p>
-									<p className="text-start">
-										{course[0]?.note}
-									</p>
+									<p className="text-start">{userData?.order_note}</p>
 								</div>
 								<div className="flex items-center justify-between">
 									<p>Mobile :</p>
-									<p>{course[0]?.phone_no}</p>
+									<p>{userData?.phone_no}</p>
 								</div>
 							</div>
 						</div>
 
 						<div className="md:text-base text-sm  flex-1 font-semibold  md:ml-10 mt-m_medium">
 							<p className="font-bold  md:mb-4 w-full">
-								Demo information,Checkout page information will
-								be here{' '}
+                                Shipping Information
 							</p>
 							<div className="space-y-1 w-full">
 								<div className="flex items-center justify-between">
 									<p>Full Name :</p>
-									<p className="text-start">
-										{course[0]?.name}
-									</p>
+									<p className="text-start">{userData?.name}</p>
 								</div>
 								<div className="flex items-center justify-between">
 									<p>Country :</p>
-									<p>{course[0]?.country}</p>
+									<p>{userData?.country}</p>
 								</div>
 								<div className="flex items-center justify-between">
 									<p>District Thana :</p>
 									<p className="text-start">
-										{course[0]?.district}
+										{userData?.district_thana}
 									</p>
 								</div>
 								<div className="flex items-center justify-between">
 									<p>Address :</p>
-									<p>{course[0]?.permanent_address}</p>
+									<p>{userData?.permanent_address}</p>
 								</div>
 								<div className="flex items-center justify-between">
 									<p>Order Notes :</p>
-									<p className="text-start">
-										{course[0]?.note}
-									</p>
+									<p className="text-start">{userData?.order_note}</p>
 								</div>
 								<div className="flex items-center justify-between">
 									<p>Mobile :</p>
-									<p>{course[0]?.phone_no}</p>
+									<p>{userData?.phone_no}</p>
 								</div>
 							</div>
 						</div>
@@ -161,35 +145,32 @@ const OrderDetails = () => {
 								</tr>
 							</thead>
 							<tbody className="md:text-base text-sm font-semibold">
-								{course &&
-									course.map((course, index) => (
-										<tr>
-											<td className="border text-center w-10 h-12 px-2">
-												<img
-													className=" w-full h-full object-cover mx-auto"
-													src={
-														course.course_data.photo
-													}
-													alt=""
-												/>
-											</td>
-											<td className="lg:py-6 md:py-4 py-2 text-center border">
-												{course.course_data.course_name}
-											</td>
-											<td className="lg:py-6 md:py-4 py-2 text-center border">
-												{course.name}
-											</td>
-											<td className="lg:py-6 md:py-4 py-2 text-center border">
-												{course.course_qty}
-											</td>
-											<td className="lg:py-6 md:py-4 py-2 text-center border">
-												{course.course_fee}
-											</td>
-											<td className="lg:py-6 md:py-4 py-2 text-center border">
-												{course.sub_total_course_fee}
-											</td>
-										</tr>
-									))}
+								{course && (
+									<tr>
+										<td className="border text-center w-10 h-12 px-2">
+											<img
+												className=" w-full h-full object-cover mx-auto"
+												src={course?.course_data.photo}
+												alt=""
+											/>
+										</td>
+										<td className="lg:py-6 md:py-4 py-2 text-center border">
+											{course?.course_data.course_name}
+										</td>
+										<td className="lg:py-6 md:py-4 py-2 text-center border">
+											{course?.name}
+										</td>
+										<td className="lg:py-6 md:py-4 py-2 text-center border">
+											{course?.course_qty}
+										</td>
+										<td className="lg:py-6 md:py-4 py-2 text-center border">
+											{course?.course_fee}
+										</td>
+										<td className="lg:py-6 md:py-4 py-2 text-center border">
+											{course?.sub_total_course_fee}
+										</td>
+									</tr>
+								)}
 							</tbody>
 						</table>
 					</div>
