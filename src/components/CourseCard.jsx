@@ -18,7 +18,7 @@ const CourseCard = ({ course, addToCart, calculateDiscount }) => {
 					className="w-full h-48 object-cover"
 				/>
 				<div className="absolute top-0 left-0 bg-black bg-opacity-50 p-2">
-					<h3 className="text-white text-xl font-bold">Data Entry</h3>
+					<h3 className="text-white text-xl font-bold">{course.course_name}</h3>
 				</div>
 			</div>
 			<div className="p-6">
